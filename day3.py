@@ -1,4 +1,4 @@
-# https://adventofcode.com/2021/day/2
+# https://adventofcode.com/2021/day/3
 
 def solution_part1(filename):
     with open(filename) as file:
