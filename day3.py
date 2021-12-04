@@ -1,9 +1,14 @@
 # https://adventofcode.com/2021/day/3
 
-def solution_part1(filename):
+
+def read_input(filename) -> list[str]:
     with open(filename) as file:
         lines = file.readlines()
-        lines = [line.rstrip() for line in lines]
+        return [line.rstrip() for line in lines]
+
+
+def solution_part1(filename):
+    lines = read_input(filename)
 
     if len(lines) == 0:
         return 0
@@ -35,9 +40,7 @@ def solution_part1(filename):
 
 
 def solution_part2(filename):
-    with open(filename) as file:
-        lines = file.readlines()
-        lines = [line.rstrip() for line in lines]
+    lines = read_input(filename)
 
     if len(lines) == 0:
         return 0

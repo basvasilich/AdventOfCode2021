@@ -2,6 +2,12 @@
 from enum import Enum
 
 
+def read_input(filename) -> list[(str, int)]:
+    with open(filename) as file:
+        lines = file.readlines()
+        return [(line.rstrip().split(' ')[0], int(line.rstrip().split(' ')[1])) for line in lines]
+
+
 class Directions(Enum):
     up = 'up'
     down = 'down'
@@ -9,9 +15,7 @@ class Directions(Enum):
 
 
 def solution_part1(filename):
-    with open(filename) as file:
-        lines = file.readlines()
-        lines = [(line.rstrip().split(' ')[0], int(line.rstrip().split(' ')[1])) for line in lines]
+    lines = read_input(filename)
 
     if len(lines) == 0:
         return 0
@@ -33,9 +37,7 @@ def solution_part1(filename):
 
 
 def solution_part2(filename):
-    with open(filename) as file:
-        lines = file.readlines()
-        lines = [(line.rstrip().split(' ')[0], int(line.rstrip().split(' ')[1])) for line in lines]
+    lines = read_input(filename)
 
     if len(lines) == 0:
         return 0
