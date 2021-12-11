@@ -1,4 +1,4 @@
-# https://adventofcode.com/2021/day/6
+# https://adventofcode.com/2021/day/7
 
 def read_input(filename) -> list[(str, int)]:
     with open(filename) as file:
