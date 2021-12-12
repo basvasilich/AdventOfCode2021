@@ -1,24 +1,11 @@
 # https://adventofcode.com/2021/day/9
 from collections import deque
+from common import get_neighbors
 
 
 def read_input(filename) -> (list[list[int]]):
     with open(filename) as file:
         return [[int(x) for x in list(line.rstrip("\n"))] for line in file.readlines()]
-
-
-def get_neighbors(matrix: list[list[int]], rowNumber: int, colNumber: int) -> list[(int, (int, int))]:
-    result = []
-    for rowAdd in range(-1, 2):
-        newRow = rowNumber + rowAdd
-        if newRow >= 0 and newRow <= len(matrix) - 1:
-            for colAdd in range(-1, 2):
-                newCol = colNumber + colAdd
-                if newCol >= 0 and newCol <= len(matrix[0]) - 1:
-                    if newCol != colNumber or newRow != rowNumber:
-                        result.append((matrix[newRow][newCol], (newRow, newCol)))
-
-    return result
 
 
 def solution_part1(filename: str, ) -> (int, set[(int, int)]):
@@ -42,13 +29,12 @@ def solution_part1(filename: str, ) -> (int, set[(int, int)]):
 def solution_part2(filename: str, ) -> int:
     _, low_points = solution_part1(filename)
     heightmap = read_input(filename)
-    visited = set()
     result = []
     q = deque()
     for row, col in low_points:
+        visited = {(row, col)}
         count = 1
         item = heightmap[row][col]
-        visited.add((row, col))
         q.extend(filter(lambda x: x[0] - item == 1 and x[1] not in visited, get_neighbors(heightmap, row, col)))
         while len(q):
             check_item = q.popleft()
