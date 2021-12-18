@@ -70,13 +70,12 @@ def make_step(initial_list: LinkedList, char_map: {str: str}) -> LinkedList:
     return initial_list
 
 
-def solution_part1(filename: str) -> int:
+def solution_part(filename: str, steps) -> int:
     initial_list, char_map = read_input(filename)
     # print_list(initial_list)
-    count = 10
-    while count:
+    while steps:
         initial_list = make_step(initial_list, char_map)
-        count -= 1
+        steps -= 1
 
     counter = {}
 
@@ -92,8 +91,8 @@ def solution_part1(filename: str) -> int:
     return max(counter.values()) - min(counter.values())
 
 
-assert (solution_part1('input/day14.test.txt') == 1588)
-print('Result Part 1: ', solution_part1('input/day14.txt'))
+assert (solution_part('input/day14.test.txt', 10) == 1588)
+print('Result Part 1: ', solution_part('input/day14.txt', 10))
 
-# solution_part2('input/day13.test.txt')
-# solution_part2('input/day13.txt')
+assert (solution_part('input/day14.test.txt', 40) == 2188189693529)
+print('Result Part 2: ', solution_part('input/day14.txt', 40))
