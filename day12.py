@@ -23,12 +23,12 @@ def solution_part1(filename: str) -> int:
     def helper(node: set[str], path: str):
         for item in node:
             if item == 'end':
-                path += '-end'
+                path += ',end'
                 paths.add(path)
             elif item.islower() and item not in path and item in graph.keys():
-                helper(graph[item], path + '-' + item)
+                helper(graph[item], path + ',' + item)
             elif item.isupper() and item in graph.keys():
-                helper(graph[item], path + '-' + item)
+                helper(graph[item], path + ',' + item)
 
     helper(graph['start'], 'start')
 
